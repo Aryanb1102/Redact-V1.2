@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Redact OSINT Data Finder</title>
+<style>
+body {
+    font-family: Arial, sans-serif; margin:20px; background: #000; color:#fff;
+}
+h1 {
+    margin-bottom: 10px; color: #00f;
+}
+form {
+    background: #111; padding:20px; margin-bottom:20px; border-radius:5px;
+    box-shadow:0 0 5px rgba(0,0,255,0.3);
+}
+input, button, textarea {
+    margin:10px 0; padding:10px; width:100%; max-width:400px;
+    border:1px solid #333; border-radius:3px; background:#000; color:#fff;
+}
+button {
+    cursor:pointer; background:#00f; color:#fff; border:none;
+    transition: background 0.3s;
+}
+button:hover {
+    background:#0056b3;
+}
+.results {
+    background:#111; padding:20px; border-radius:5px;
+    box-shadow:0 0 5px rgba(0,0,255,0.3);
+}
+.service {
+    border-bottom:1px solid #333; padding:10px 0;
+}
+.service:last-child {
+    border:none;
+}
+.hidden {
+    display:none;
+}
+#loading {
+    width:50px; display:none; margin:0 auto;
+}
+.note {
+    margin-bottom: 20px; color: #ccc;
+}
+</style>
+</head>
+<body>
+<h1>Redact - OSINT Data Finder</h1>
+<p class="note">
+    This tool integrates SpiderFoot, Have I Been Pwned, and Google Custom Search to see if your email is found 
+    in data breaches or paste sites (like Pastebin). If there's no data, you'll see "No results found."
+</p>
+
+<form id="search-form">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<button type="submit">Search</button>
+</form>
+
+<img id="loading" class="hidden" src="/static/spinner.gif" alt="Loading...">
+
+<div id="results" class="results hidden">
+    <h3>Services Found</h3>
+    <div id="service-list"></div>
+</div>
+
+<h2 style="color:#00f;">Generate Data Deletion Email</h2>
+<form id="email-form">
+<input type="text" id="website" placeholder="Website" required>
+<input type="text" id="user-name" placeholder="Your Name" required>
+<input type="email" id="user-email" placeholder="Your Email" required>
+<button type="submit">Generate Email</button>
+</form>
+<textarea id="email-template" rows="10" readonly></textarea>
+<p id="contact-email"></p>
+
+<script src="/static/main.js"></script>
+</body>
+</html>
